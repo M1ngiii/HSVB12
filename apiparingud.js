@@ -81,7 +81,7 @@ async function handleFormSubmit(event) {
 
         if (form.id === "otsinguformKonkreetne"){
             var idValue = document.getElementById('raamatuId').value.trim();
-            form.action = "http://localhost:5001/raamatu_otsing/" + encodeURIComponent(idValue);
+            form.action = "https://raamatuteotsingapi.azurewebsites.net/raamatu_otsing/" + encodeURIComponent(idValue);
         }
 
         // This takes the API URL from the form's `action` attribute.
@@ -124,15 +124,15 @@ function handleResponse(form, responseData) {
 }
 
 async function listiraamatud() {
-	const responseData = await getDataAsJson("http://localhost:5000/raamatud/");
+	const responseData = await getDataAsJson("https://raamatudapi.azurewebsites.net/raamatud/");
 	const resultElement = document.getElementById("raamatud_result");
 
 	resultElement.innerHTML = ""
 	for (var raamatTXT of responseData.raamatud){
 		var raamat = raamatTXT.split('.')[0];
 		resultElement.innerHTML += '<div>' +
-            '<a href="http://localhost:5000/raamatud/'+raamat+'"  download="'+raamat+'.txt" >' +raamat+".txt</a> " +
-			'<a href="#" onclick="deleteObject(\'http://localhost:5000/raamatud/'+raamat+'\')" > [kustuta]</a>' +
+            '<a href="https://raamatudapi.azurewebsites.net/raamatud/'+raamat+'"  download="'+raamat+'.txt" >' +raamat+".txt</a> " +
+			'<a href="#" onclick="deleteObject(\'https://raamatudapi.azurewebsites.net/raamatud/'+raamat+'\')" > [kustuta]</a>' +
             '<br />';
 	}
 }
